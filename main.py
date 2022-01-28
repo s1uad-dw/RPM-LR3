@@ -2,7 +2,10 @@ def input_function():
     while True:
         try:
             x = int(input("Введите валидное число:\n"))
-            return x
+            if x>=0:
+                return x
+            else:
+                pass
         except:
             pass
 
@@ -12,11 +15,14 @@ def x3_1(x):
 def x2(x):
     return x // 2
 
-def collatz():
-    x = input_function()
-    if x%2==0:
-        print('x - чётное\nx/2 =', x2(x))
-    else:
-        print('x - нечётное\nx*3+1 =', x3_1(x))
-
-collatz()
+def collatz(x):
+    result = []
+    while x>1:
+        if x%2==0:
+            x = x2(x)
+        else:
+            x = x3_1(x)
+        result.append(x)
+    return result
+    
+print('Результат:', collatz(input_function()))
